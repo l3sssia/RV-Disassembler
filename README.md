@@ -5,22 +5,27 @@ The classes for disassembling are located in the elf package, and the main class
 
 Result contains assembly code of following sections: `.text`, `.symtab`.
 
+Detailed description (report and specification) [here](RV-Disassembler/Мутаева_Олеся_M3139_3.pdf).
+
 ### Example:
 Input file (ELF): [test_elf](RV-Disassembler/test_elf)
 
 Output file (Assembly code): [out.txt](RV-Disassembler/out.txt)
 
-Fragment of disassembly of section `.text`:
-`
+Fragment of disassembly of section .text:
+```
 00010074   <register_fini>:
    10074:	00000793	   addi	a5, zero, 0
    10078:	00078863	    beq	a5, zero, 0x10088 <L0>
    1007c:	00010537	    lui	a0, 16
    10080:	48c50513	   addi	a0, a0, 1164
    10084:	3f40006f	    jal	zero, 0x10478 <atexit>
-`
-Fragment of disassembly of section `.symtab`:
-`
+00010088   <L0>:
+   10088:	00008067	   jalr	zero, 0(ra)
+```
+
+Fragment of disassembly of section .symtab:
+```
 Symbol Value              Size Type     Bind     Vis       Index Name
 [   0] 0x0                   0 NOTYPE   LOCAL    DEFAULT     UND 
 [   1] 0x10074               0 SECTION  LOCAL    DEFAULT       1 
@@ -35,4 +40,4 @@ Symbol Value              Size Type     Bind     Vis       Index Name
 [  10] 0x0                   0 FILE     LOCAL    DEFAULT     ABS __call_atexit.c
 [  11] 0x10074              24 FUNC     LOCAL    DEFAULT       1 register_fini
 [  12] 0x0                   0 FILE     LOCAL    DEFAULT     ABS crtstuff.c
-`
+```
